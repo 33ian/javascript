@@ -1,56 +1,3 @@
-/*
-PRIMERA PRE ENTREGA
-
-function calcular_impuesto (precio){
-    let precioFinal = impuestos * precio
-    return console.log("El precio final del juego con un total de impuestos del 75% es: "+"$"+precioFinal+ " (AR$)")
-}
-
-
-let impuestos = 1.75
-let precio = 0
-let rta = ""
-
-while(rta != "salir"){
-    precio = (prompt("Ingrese el precio del juego en AR$"))
-    if (precio <= 0 || isNaN(precio)){
-        console.log("Por favor ingrese un número valido")
-    }    
-    else{
-        calcular_impuesto(precio)
-    rta = prompt("Ingrese la palabra \"salir\" para finalizar o presione ENTER para continuar") .toLowerCase()
-    }
-}
-*/
-
-/*
-CONSTRUCTORES
-
-class Producto{
-    constructor(id,nombre,precio,anio){
-        this.id = id;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.anio = anio;
-    }
-    descripcion(){
-    return `ID: ${this.id}
-            /nJuego: ${this.nombre}
-            /nPrecio: ${this.nombre}
-            /nFecha de salida: ${this.anio}
-            `
-    }
-}
-
-class Carrito{
-    constructor(){
-        this.userList = []
-    }
-    agregarJuego(Producto){
-        this.userList.push(Producto)
-    }
-}
-*/
 
 function total(arr){
     let resultado = 0;
@@ -105,16 +52,3 @@ do{
 }while(rta != "no")
 
 alert("El precio a pagar con impuestos es un total de $"+ total(carrito));
-
-
-
-/*
-CONSTRUIDOS CON CONSTRUCTOR
-
-const juego = new Producto(1,"Red Dead Redemption 2", 11299, 2019)
-const juego2 = new Producto(2,"Sea of Thieves", 3999, 2020)
-const juego3 = new Producto(3,"Cyberpunk 2077", 3999, 2020)
-const juego4 = new Producto(4,"Dark Souls 3", 8599, 2016)
-const juego5 = new Producto(5,"Hades", 1750, 2020)
-
-*/
