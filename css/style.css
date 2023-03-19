@@ -2,6 +2,16 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: rgb(41, 37, 37);
-    color: white;
+}
+
+.card-img-top{
+    width: 287px;
+    height: 287px;
+    object-fit: cover;
+}
+
+.horizontal-card{
+    width: 155px;
+    height: 155px;
+    object-fit: cover;
 }
