@@ -54,45 +54,63 @@ do{
 alert("El precio a pagar con impuestos es un total de $"+ total(carrito));
 
 */
-const listaJuegos = [
-    {id: 1, nombre: "Red Dead Redemption 2", precio: 11299, anio: 2019, url:"https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA08519_00/12/i_3da1cf7c41dc7652f9b639e1680d96436773658668c7dc3930c441291095713b/i/icon0.png"},
-    {id: 2, nombre: "Sea of Thieves", precio: 3999, anio: 2020, url: "https://www.somosxbox.com/wp-content/uploads/2016/06/sea-of-thieves-cover.jpg"},
-    {id: 3, nombre: "Cyberpunk 2077", precio: 3999, anio: 2020, url: "https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Cyberpunk_2077_box_art.jpg/220px-Cyberpunk_2077_box_art.jpg"},
-    {id: 4, nombre: "Dark Souls 3", precio: 8599, anio: 2016, url: "https://as.com/meristation/imagenes/2020/04/07/game_cover/136602131586253551.jpg"},
-    {id: 5, nombre: "Hades", precio: 1750, anio: 2020, url: "https://tierragamer.com/wp-content/uploads/2022/12/Hadestierragamer.jpg"},
-]
 
-const listaCarrito = []
+class ProductoController{
+    construcor(){
+        this.listaJuegos = []
+    }
 
-const contenedor_productos = document.getElementById("contenedor_productos")
-const contenedor_carrito = document.getElementById("contenedor_carrito")
+    levantar(){
+        let obtenerListaJSON = localStorage.getItem("listaJuegos")
 
-listaJuegos.forEach( producto => {
-    contenedor_productos.innerHTML += `
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" alt="..." src=${producto.url}>
-        <div class="card-body">
-            <h5 class="card-title">${producto.nombre}</h5>
-            <p class="card-text">
-                Precio: $${producto.precio}<br>
-                Fecha de salida: ${producto.anio}
-            </p>
-            <a href="#" id="juego${producto.id}" class="btn btn-primary">Añadir al carrito</a>
-        </div>
-    </div>
-    `
-})
+        if(obtenerListaJSON){
+            this.listaJuegos = JSON.parse(obtenerListaJSON)
+            
+        }
+    }
 
-listaJuegos.forEach( producto => {
-    const enEsperaDeCompra = document.getElementById(`juego${producto.id}`)
+    mostrarEnDOM(contenedor_productos){
+        this.listaJuegos.forEach( producto => {
+            contenedor_productos.innerHTML += `
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" alt="..." src=${producto.url}>
+                <div class="card-body">
+                    <h5 class="card-title">${producto.nombre}</h5>
+                    <p class="card-text">
+                        Precio: $${producto.precio}<br>
+                        Fecha de salida: ${producto.anio}
+                    </p>
+                    <a href="#" id="juego${producto.id}" class="btn btn-primary">Añadir al carrito</a>
+                </div>
+            </div>
+            `
+        })
+        
+    }
+}
 
-    enEsperaDeCompra.addEventListener("click",() =>{
-        listaCarrito.push(producto)
+class CarritoController{
+    constructor(){
+        this.listaCarrito = []
+    }
 
+    levantar(){
+        let obtenerListaJSON = localStorage.getItem("listaCarrito")
+
+        if(obtenerListaJSON){
+            this.listaCarrito = JSON.parse(obtenerListaJSON)
+            
+        }
+    }
+    añadir(producto){
+        this.listaCarrito.push(producto)
+        let arrFormatoJSON = JSON.parse(this.listaCarrito)
+        localStorage.setItem("listaCarrito", arrFormatoJSON)
+    }
+
+    mostrarEnDOM(contenedor_carrito){
         contenedor_carrito.innerHTML = ``
-
-        listaCarrito.forEach(producto => {
-
+        this.listaCarrito.forEach(producto => {
             contenedor_carrito.innerHTML += `
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row g-0">
@@ -107,15 +125,43 @@ listaJuegos.forEach( producto => {
                                 Fecha de salida: ${producto.anio}
                             </p>
                             <p class="card-text"><small class="text-muted">
-                                Last updated 3 mins ago</small>
+                                El precio se encuentra en pesos argentinos (AR$).</small>
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
-        
-        `
+            `
         })
-    })
+    }
+    
+}
 
+const controladorProducto = new ProductoController()
+controladorProducto.levantar()
+
+const controladorCarrito = new CarritoController()
+controladorCarrito.levantar()
+
+const contenedor_productos = document.getElementById("contenedor_productos")
+const contenedor_carrito = document.getElementById("contenedor_carrito")
+
+
+controladorProducto.mostrarEnDOM(contenedor_productos)
+controladorCarrito.mostrarEnDOM(contenedor_carrito)
+
+
+
+controladorProducto.listaJuegos.forEach( producto => {
+    const enEsperaDeCompra = document.getElementById(`juego${producto.id}`)
+
+    enEsperaDeCompra.addEventListener("click",() =>{
+
+        controladorCarrito.añadir(producto)
+
+        contenedor_carrito.innerHTML = ``
+
+        controladorCarrito.mostrarEnDOM(controladorCarrito)
+
+    })
 })
