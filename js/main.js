@@ -14,8 +14,8 @@ class ProductoController{
     }
 
     mostrarEnDOM(contenedor_productos){
-        contenedor_productos.innerHTML = ``
-        this.listaJuegos.forEach( producto => {
+        contenedor_productos.innerHTML = ""
+        this.listaJuegos.forEach(producto => {
             contenedor_productos.innerHTML += `
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" alt="..." src=${producto.url}>
@@ -106,7 +106,6 @@ controladorProducto.listaJuegos.forEach( producto => {
 
         controladorCarrito.levantar()
 
-        controladorCarrito.mostrarEnDOM(controladorCarrito)
-
+        controladorCarrito.mostrarEnDOM(contenedor_carrito)
     })
 })

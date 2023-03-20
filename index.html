@@ -17,7 +17,7 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand logo" href="./index.html"> <img src="https://cdn.freebiesupply.com/images/large/2x/steam-logo-transparent.png" alt="logo"> </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -25,28 +25,50 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Tienda
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item " href="#">Inicio</a></li>
+                                <li><a class="dropdown-item" href="#">Lista de descubrimientos</a></li>
+                                <li><a class="dropdown-item" href="#">Lista de deseados</a></li>
+                                <li><a class="dropdown-item" href="#">...</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                Dropdown
+                                Comunidad
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="#">Inicio</a></li>
+                                <li><a class="dropdown-item" href="#">Discusiones</a></li>
+                                <li><a class="dropdown-item" href="#">Workshop</a></li>
+                                <li><a class="dropdown-item" href="#">...</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Usuario
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Actividad</a></li>
+                                <li><a class="dropdown-item" href="#">Perfil</a></li>
+                                <li><a class="dropdown-item" href="#">Amigos</a></li>
+                                <li><a class="dropdown-item" href="#">...</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled">Disabled</a>
+                            <a class="nav-link" aria-current="page" href="#">Chat</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Soporte</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./pages/carga_productos.html">Cargar productos</a>
                         </li>
                     </ul>
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -58,7 +80,7 @@
         </nav>
     </header>
     <main>
-        <h1 class="text-center mt-3 mb-3">Hello, world!</h1>
+        <h1 class="text-center mt-3 mb-3"></h1>
         <section class="container d-flex flex-wrap gap-3 justify-content-center" id="contenedor_productos">
             <!--div class="card" style="width: 18rem;">
                 <img src="https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA08519_00/12/i_3da1cf7c41dc7652f9b639e1680d96436773658668c7dc3930c441291095713b/i/icon0.png" class="card-img-top" alt="...">
@@ -102,6 +124,7 @@
                     </div-->
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"> Vaciar carrito </button>
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Seguir comprando</button>
                     <button type="button" class="btn btn-success">Finalizar compra</button>
                 </div>

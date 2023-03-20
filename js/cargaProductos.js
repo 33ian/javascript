@@ -12,6 +12,7 @@ localStorage.setItem("listaJuegos", arrEnFormatoJSON)
 
 let obtenerListaJSON = localStorage.getItem("listaJuegos")
 
+
 if(obtenerListaJSON){
     listaJuegos = JSON.parse(obtenerListaJSON)
 
