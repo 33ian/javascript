@@ -1,19 +1,19 @@
 
-class ProductoController{
-    construcor(){
+class ProductoController {
+    constructor() {
         this.listaJuegos = []
     }
 
-    levantar(){
+    levantar() {
         let obtenerListaJSON = localStorage.getItem("listaJuegos")
 
-        if(obtenerListaJSON){
+        if (obtenerListaJSON) {
             this.listaJuegos = JSON.parse(obtenerListaJSON)
-            
+
         }
     }
 
-    mostrarEnDOM(contenedor_productos){
+    mostrarEnDOM(contenedor_productos) {
         contenedor_productos.innerHTML = ""
         this.listaJuegos.forEach(producto => {
             contenedor_productos.innerHTML += `
@@ -30,30 +30,30 @@ class ProductoController{
             </div>
             `
         })
-        
+
     }
 }
 
-class CarritoController{
-    constructor(){
+class CarritoController {
+    constructor() {
         this.listaCarrito = []
     }
 
-    levantar(){
+    levantar() {
         let obtenerListaJSON = localStorage.getItem("listaCarrito")
 
-        if(obtenerListaJSON){
+        if (obtenerListaJSON) {
             this.listaCarrito = JSON.parse(obtenerListaJSON)
-            
+
         }
     }
-    anadir(producto){
+    anadir(producto) {
         this.listaCarrito.push(producto)
         let arrFormatoJSON = JSON.stringify(this.listaCarrito)
         localStorage.setItem("listaCarrito", arrFormatoJSON)
     }
 
-    mostrarEnDOM(contenedor_carrito){
+    mostrarEnDOM(contenedor_carrito) {
         contenedor_carrito.innerHTML = ``
         this.listaCarrito.forEach(producto => {
             contenedor_carrito.innerHTML += `
@@ -79,7 +79,12 @@ class CarritoController{
             `
         })
     }
-    
+
+    limpiar() {
+        this.listaCarrito = []
+        localStorage.removeItem("listaCarrito")
+    }
+
 }
 
 const controladorProducto = new ProductoController()
@@ -94,18 +99,61 @@ const contenedor_carrito = document.getElementById("contenedor_carrito")
 
 controladorProducto.mostrarEnDOM(contenedor_productos)
 controladorCarrito.mostrarEnDOM(contenedor_carrito)
+const finalizar = document.getElementById("finalizar")
+const clear = document.getElementById("clear")
 
 
 
-controladorProducto.listaJuegos.forEach( producto => {
+controladorProducto.listaJuegos.forEach(producto => {
     const enEsperaDeCompra = document.getElementById(`juego${producto.id}`)
 
-    enEsperaDeCompra.addEventListener("click",() =>{
+    enEsperaDeCompra.addEventListener("click", () => {
 
         controladorCarrito.anadir(producto)
 
         controladorCarrito.levantar()
 
         controladorCarrito.mostrarEnDOM(contenedor_carrito)
+
+        Toastify({
+            text: "Añadido al carrito",
+            duration: 1000,
+            gravity: "bottom",
+            position: "right",
+            style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+        }).showToast();
     })
+})
+
+finalizar.addEventListener("click", () => {
+
+    if (controladorCarrito.listaCarrito.length > 0) {
+        controladorCarrito.limpiar(contenedor_carrito)
+        controladorCarrito.mostrarEnDOM(contenedor_carrito)
+
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Compra realizada con éxito',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    } else {
+        Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'El carrito se encuentra vacio',
+            showConfirmButton: false,
+            timer: 1100
+        })
+    }
+
+
+})
+
+clear.addEventListener("click", () => {
+    controladorCarrito.limpiar(contenedor_carrito)
+    controladorCarrito.mostrarEnDOM(contenedor_carrito)
 })
