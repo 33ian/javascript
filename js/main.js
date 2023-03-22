@@ -39,6 +39,11 @@ class CarritoController {
         this.listaCarrito = []
     }
 
+    borrar(producto) {
+        let indice = this.listaCarrito.indexOf(producto)
+        this.listaCarrito.splice(indice,1)
+    }
+
     levantar() {
         let obtenerListaJSON = localStorage.getItem("listaCarrito")
 
@@ -72,11 +77,23 @@ class CarritoController {
                             <p class="card-text"><small class="text-muted">
                                 El precio se encuentra en pesos argentinos (AR$).</small>
                             </p>
+                            <div class="icono-card">
+                            <button class="boton" id="borrar${producto.id}"> <i class="fa-solid fa-trash-can"></i> </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             `
+        })
+
+        this.listaCarrito.forEach( producto => {
+            document.getElementById(`borrar${producto.id}`).addEventListener("click", () => {
+                this.borrar(producto)
+                localStorage.setItem("listaCarrito", JSON.stringify(this.listaCarrito))
+                this.mostrarEnDOM(contenedor_carrito)
+            })
+            
         })
     }
 
@@ -157,3 +174,7 @@ clear.addEventListener("click", () => {
     controladorCarrito.limpiar(contenedor_carrito)
     controladorCarrito.mostrarEnDOM(contenedor_carrito)
 })
+
+
+
+

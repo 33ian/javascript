@@ -17,8 +17,19 @@
 
 .horizontal-card{
     width: 155px;
-    height: 185px;
+    height: 220px;
     object-fit: cover;
+}
+
+.icono-card{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.boton{
+    border-style: none;
+
 }
 
 footer{
