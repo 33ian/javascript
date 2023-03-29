@@ -46,12 +46,13 @@ class CarritoController {
 
     levantar() {
         let obtenerListaJSON = localStorage.getItem("listaCarrito")
-
         if (obtenerListaJSON) {
             this.listaCarrito = JSON.parse(obtenerListaJSON)
-
+            return true
         }
+    return false
     }
+
     anadir(producto) {
         this.listaCarrito.push(producto)
         let arrFormatoJSON = JSON.stringify(this.listaCarrito)
@@ -92,6 +93,7 @@ class CarritoController {
                 this.borrar(producto)
                 localStorage.setItem("listaCarrito", JSON.stringify(this.listaCarrito))
                 this.mostrarEnDOM(contenedor_carrito)
+                this.mostrarPreciosEnDOM(precio, precio_con_impuestos)
             })
             
         })
@@ -102,16 +104,37 @@ class CarritoController {
         localStorage.removeItem("listaCarrito")
     }
 
+    mostrarPreciosEnDOM(precio, precio_con_impuestos){
+        precio.innerHTML = '$'+this.calcularTotal()
+        precio_con_impuestos.innerHTML = '$'+ this.calcularPrecioConImpuestos()
+    }
+
+    calcularTotal(){
+        return this.listaCarrito.reduce((acumulador, producto)=> acumulador + producto.precio ,0)
+    }
+
+    calcularPrecioConImpuestos(){
+        return this.calcularTotal() * 1.75
+    }
+
 }
 
 const controladorProducto = new ProductoController()
 const controladorCarrito = new CarritoController()
 
-controladorCarrito.levantar()
+const levantoAlgo = controladorCarrito.levantar()
 controladorProducto.levantar()
+
+
 
 const contenedor_productos = document.getElementById("contenedor_productos")
 const contenedor_carrito = document.getElementById("contenedor_carrito")
+const precio = document.getElementById("precio")
+const precio_con_impuestos = document.getElementById("precio_con_impuestos")
+
+if (levantoAlgo){
+    controladorCarrito.mostrarPreciosEnDOM(precio, precio_con_impuestos)
+}
 
 
 controladorProducto.mostrarEnDOM(contenedor_productos)
@@ -132,6 +155,8 @@ controladorProducto.listaJuegos.forEach(producto => {
 
         controladorCarrito.mostrarEnDOM(contenedor_carrito)
 
+        controladorCarrito.mostrarPreciosEnDOM(precio, precio_con_impuestos)
+
         Toastify({
             text: "Añadido al carrito",
             duration: 1000,
@@ -149,6 +174,7 @@ finalizar.addEventListener("click", () => {
     if (controladorCarrito.listaCarrito.length > 0) {
         controladorCarrito.limpiar(contenedor_carrito)
         controladorCarrito.mostrarEnDOM(contenedor_carrito)
+        controladorCarrito.mostrarPreciosEnDOM(precio, precio_con_impuestos)
 
         Swal.fire({
             position: 'center',
@@ -173,6 +199,7 @@ finalizar.addEventListener("click", () => {
 clear.addEventListener("click", () => {
     controladorCarrito.limpiar(contenedor_carrito)
     controladorCarrito.mostrarEnDOM(contenedor_carrito)
+    controladorCarrito.mostrarPreciosEnDOM(precio, precio_con_impuestos)
 })
 
 
