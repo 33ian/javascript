@@ -17,7 +17,7 @@ class ProductoController {
         contenedor_productos.innerHTML = ""
         this.listaJuegos.forEach(producto => {
             contenedor_productos.innerHTML += `
-            <div class="card" style="width: 18rem;">
+            <div class="card juegos" style="width: 18rem;">
                 <img class="card-img-top" alt="..." src=${producto.url}>
                 <div class="card-body">
                     <h5 class="card-title">${producto.nombre}</h5>
@@ -75,11 +75,11 @@ class CarritoController {
                                 Precio: $${producto.precio}<br>
                                 Fecha de salida: ${producto.anio}
                             </p>
-                            <p class="card-text"><small class="text-muted">
+                            <p class="card-text"><small class="peso-texto">
                                 El precio se encuentra en pesos argentinos (AR$).</small>
                             </p>
                             <div class="icono-card">
-                            <button class="boton" id="borrar${producto.id}"> <i class="fa-solid fa-trash-can"></i> </button>
+                            <button class="boton trash" id="borrar${producto.id}"> <i class="fa-solid fa-trash-can"></i> </button>
                             </div>
                         </div>
                     </div>

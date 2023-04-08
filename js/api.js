@@ -7,10 +7,11 @@ fetch('https://jsonplaceholder.typicode.com/users')
 
     .then(listaUsuarios => listaUsuarios.forEach(user => {
         comentarios.innerHTML += `
-        
-            <p> Username: ${user.username}</p>
-            <p> Nombre: ${user.name}</p>
-            <p>ID de usuario: ${user.id}</p>
-        
+        <div class="vertical">
+            <img src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-default-avatar-profile-icon-vector-social-media-user-image-vector-illustration-227787227.jpg" alt="avatar" class="foto-perfil">
+            <p> Username: ${user.username} </p> 
+            <p> Nombre: ${user.name} </p>
+            <p> ID de usuario: ${user.id} </p>
+        </div>
         `
     }))

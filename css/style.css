@@ -4,6 +4,52 @@
     box-sizing: border-box;
 }
 
+.navbar{
+    background-color: #171a21;
+}
+
+body{
+    background-color: #1a2a3b;
+}
+
+.compra{
+    background-color: #5c7e10;
+}
+
+.modal-header{
+    background-color: #171a21;
+    color: white;
+}
+
+.modal-body{
+    background-color: #1a2a3b;
+}
+
+.modal-footer{
+    background-color: #171a21;
+    color: white
+}
+
+.mb-3{
+    background-color: #21374a;
+    color: #c7d5e0;
+}
+
+.juegos{
+    background-color: #36607c;
+    color: white;
+}
+
+.peso-texto{
+    color: #c7d5e0;
+    font-style: italic;
+}
+
+.trash{
+    background-color: #21374a;
+    color: #c7d5e0;
+}
+
 .logo img{
     width: 40px;
     height: 40px;
@@ -32,15 +78,48 @@
 
 }
 
+.usuarios{
+    color:#969eab;
+}
+
+.online{
+    display: flex;
+    flex-direction: row;
+}
+
+.vertical{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.158);
+    margin: 5px;
+    width: 200px;
+    height: auto;
+
+}
+
+.foto-perfil{
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+}
+
+.pantalla{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 footer{
     height: 70px;
     width: 100%;
-    background-color: #f8f9fa;
-    color: black;
+    background-color: #171a21;
+    color: #969eab;
     margin-top: 15px;
     padding: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     
 }
